@@ -42,20 +42,20 @@ public class SignInWindow extends JPanel {
         titleLabel.setFont(new Font("Droid Sans Mono", Font.BOLD, 50));
         titleLabel.setForeground(Color.decode("#26e959"));
         //
-        usernameLabel.setForeground(Color.decode("#26e959"));
+        usernameLabel.setForeground(Color.decode("#007800"));
         usernameField.setBorder(null);
-        usernameField.setBackground(Color.decode("#d7ffdc"));
+        usernameField.setBackground(Color.decode("#e1fee1"));
         //
-        passwordLabel.setForeground(Color.decode("#26e959"));
+        passwordLabel.setForeground(Color.decode("#007800"));
         passwordField.setBorder(null);
-        passwordField.setBackground(Color.decode("#d7ffdc"));
+        passwordField.setBackground(Color.decode("#e1fee1"));
         //
         usernameField.setMaximumSize(new Dimension(300, 30));
         passwordField.setMaximumSize(new Dimension(300, 30));
         //
         signInButton.setBorder(null);
         signInButton.setForeground(Color.decode("#f4f2f2"));
-        signInButton.setBackground(Color.decode("#26e959"));
+        signInButton.setBackground(Color.decode("#007800"));
         signInButton.setMaximumSize(new Dimension(150, 30));
         //
         forgotPassword.setAlignmentX(CENTER_ALIGNMENT);
@@ -105,5 +105,15 @@ public class SignInWindow extends JPanel {
         forgotDialog.add(userEmailLabel);
         forgotDialog.add(userEmailField);
         forgotDialog.add(sendEmailButton);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D graphics2D = (Graphics2D) g;
+        GradientPaint gradientPaint = new GradientPaint(0, 0, Color.decode("#f4f2f2"), 0, 500, Color.decode("#d9d9d9"));
+        graphics2D.setPaint(gradientPaint);
+        graphics2D.fillRect(0,0, 1200, 700);
     }
 }
