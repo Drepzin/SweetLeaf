@@ -1,0 +1,109 @@
+package org.example.login;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class SignInWindow extends JPanel {
+
+    private JLabel titleLabel, usernameLabel, passwordLabel, forgotPassword, userEmailLabel;
+
+    private JTextField usernameField, passwordField, userEmailField;
+
+    private JButton signInButton, sendEmailButton;
+
+    private JDialog forgotDialog;
+
+    public SignInWindow(){
+        init();
+    }
+
+    private void init(){
+        setVisible(true);
+        setBackground(Color.decode("#f4f2f2"));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //
+         //initializate
+        titleLabel = new JLabel("Sweet");
+        usernameLabel = new JLabel("username");
+        passwordLabel = new JLabel("password");
+        usernameField = new JTextField();
+        passwordField = new JTextField();
+        signInButton = new JButton("Sign in");
+        forgotPassword = new JLabel("Forgot password");
+        //
+         //Align
+        titleLabel.setAlignmentX(CENTER_ALIGNMENT);
+        usernameLabel.setAlignmentX(CENTER_ALIGNMENT);
+        passwordLabel.setAlignmentX(CENTER_ALIGNMENT);
+        signInButton.setAlignmentX(CENTER_ALIGNMENT);
+        //Style
+        titleLabel.setFont(new Font("Droid Sans Mono", Font.BOLD, 50));
+        titleLabel.setForeground(Color.decode("#26e959"));
+        //
+        usernameLabel.setForeground(Color.decode("#26e959"));
+        usernameField.setBorder(null);
+        usernameField.setBackground(Color.decode("#d7ffdc"));
+        //
+        passwordLabel.setForeground(Color.decode("#26e959"));
+        passwordField.setBorder(null);
+        passwordField.setBackground(Color.decode("#d7ffdc"));
+        //
+        usernameField.setMaximumSize(new Dimension(300, 30));
+        passwordField.setMaximumSize(new Dimension(300, 30));
+        //
+        signInButton.setBorder(null);
+        signInButton.setForeground(Color.decode("#f4f2f2"));
+        signInButton.setBackground(Color.decode("#26e959"));
+        signInButton.setMaximumSize(new Dimension(150, 30));
+        //
+        forgotPassword.setAlignmentX(CENTER_ALIGNMENT);
+        forgotPassword.setForeground(Color.decode("#02a181"));
+        forgotPassword.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        signInButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+         //adding
+        add(Box.createRigidArea(new Dimension(0, 40)));
+        add(titleLabel);
+        add(Box.createRigidArea(new Dimension(0, 30)));
+        add(usernameLabel);
+        add(usernameField);
+        add(Box.createRigidArea(new Dimension(0, 30)));
+        add(passwordLabel);
+        add(passwordField);
+        add(Box.createRigidArea(new Dimension(0, 30)));
+        add(signInButton);
+        add(forgotPassword);
+        //functions
+        forgotPassword.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                initForgotDialog();
+            }
+        });
+    }
+
+    private void initForgotDialog(){
+        forgotDialog = new JDialog();
+        forgotDialog.setTitle("Recover your account");
+        forgotDialog.setVisible(true);
+        forgotDialog.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        forgotDialog.setSize(new Dimension(800, 250));
+        forgotDialog.setLayout(new BoxLayout(forgotDialog.getContentPane(), BoxLayout.X_AXIS));
+        //
+        userEmailLabel = new JLabel("Email ");
+        userEmailField = new JTextField();
+        sendEmailButton = new JButton("send");
+        //
+        userEmailField.setMaximumSize(new Dimension(600, 30));
+        userEmailField.setAlignmentY(CENTER_ALIGNMENT);
+        userEmailLabel.setAlignmentY(CENTER_ALIGNMENT);
+        sendEmailButton.setAlignmentY(CENTER_ALIGNMENT);
+        //
+         //adding
+        forgotDialog.add(Box.createRigidArea(new Dimension(50, 10)));
+        forgotDialog.add(userEmailLabel);
+        forgotDialog.add(userEmailField);
+        forgotDialog.add(sendEmailButton);
+    }
+}
