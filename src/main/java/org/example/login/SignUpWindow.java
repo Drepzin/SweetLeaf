@@ -7,9 +7,11 @@ import java.util.ArrayDeque;
 
 public class SignUpWindow extends JPanel {
 
-    private JLabel titleLabel, usernameLabel, emailLabel, passwordLabel, passwordRepLabel;
+    private JLabel titleLabel, nameLabel, usernameLabel, emailLabel, passwordLabel, passwordRepLabel;
 
-    private JTextField usernameField, emailField, passwordField, passwordRepField;
+    private JTextField usernameField, nameField, emailField;
+
+    private JPasswordField passwordField, passwordRepField;
 
     private JButton signUpButton;
 
@@ -25,19 +27,22 @@ public class SignUpWindow extends JPanel {
         //components initialization
         //labels
         titleLabel = new JLabel("Leaf");
+        nameLabel = new JLabel("full name");
         usernameLabel = new JLabel("Username");
         emailLabel = new JLabel("Email");
         passwordLabel = new JLabel("Password");
         passwordRepLabel = new JLabel("Password");
         signUpButton = new JButton("SignUp");
         //text fields
+        nameField = new JTextField();
         usernameField = new JTextField();
         emailField = new JTextField();
-        passwordField = new JTextField();
-        passwordRepField = new JTextField();
+        passwordField = new JPasswordField();
+        passwordRepField = new JPasswordField();
         //
          //align components
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nameLabel.setAlignmentX(CENTER_ALIGNMENT);
         usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         usernameField.setAlignmentX(Component.CENTER_ALIGNMENT);
         emailLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -52,11 +57,13 @@ public class SignUpWindow extends JPanel {
         //label
         titleLabel.setFont(new Font("Droid Sans Mono", Font.BOLD, 50));
         titleLabel.setForeground(Color.decode("#f4f2f2"));
+        nameLabel.setForeground(Color.decode("#f4f2f2"));
         usernameLabel.setForeground(Color.decode("#f4f2f2"));
         emailLabel.setForeground(Color.decode("#f4f2f2"));
         passwordLabel.setForeground(Color.decode("#f4f2f2"));
         passwordRepLabel.setForeground(Color.decode("#f4f2f2"));
         //
+        nameField.setBackground(Color.decode("#f4f2f2"));
         usernameField.setBackground(Color.decode("#dcdcdc"));
         emailField.setBackground(Color.decode("#dcdcdc"));
         passwordField.setBackground(Color.decode("#dcdcdc"));
@@ -67,11 +74,13 @@ public class SignUpWindow extends JPanel {
         signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         signUpButton.setBorder(new EmptyBorder(10,20,10,20));
         //
+        nameField.setBorder(null);
         usernameField.setBorder(null);
         emailField.setBorder(null);
         passwordField.setBorder(null);
         passwordRepField.setBorder(null);
          //size of text
+        nameField.setMaximumSize(new Dimension(300, 30));
         usernameField.setMaximumSize(new Dimension(300, 30));
         emailField.setMaximumSize(new Dimension(300, 30));
         passwordField.setMaximumSize(new Dimension(300, 30));
@@ -79,6 +88,9 @@ public class SignUpWindow extends JPanel {
         //add
         add(Box.createRigidArea(new Dimension(0, 40)));
         add(titleLabel);
+        add(Box.createRigidArea(new Dimension(0, 30)));
+        add(nameLabel);
+        add(nameField);
         add(Box.createRigidArea(new Dimension(0, 30)));
         add(usernameLabel);
         add(usernameField);

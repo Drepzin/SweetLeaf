@@ -9,7 +9,9 @@ public class SignInWindow extends JPanel {
 
     private JLabel titleLabel, usernameLabel, passwordLabel, forgotPassword, userEmailLabel;
 
-    private JTextField usernameField, passwordField, userEmailField;
+    private JTextField usernameField, userEmailField;
+
+    private JPasswordField passwordField;
 
     private JButton signInButton, sendEmailButton;
 
@@ -29,7 +31,7 @@ public class SignInWindow extends JPanel {
         usernameLabel = new JLabel("username");
         passwordLabel = new JLabel("password");
         usernameField = new JTextField();
-        passwordField = new JTextField();
+        passwordField = new JPasswordField();
         signInButton = new JButton("Sign in");
         forgotPassword = new JLabel("Forgot password");
         //
