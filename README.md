@@ -1,2 +1,2 @@
 # SweetLeaf
-A Java swing project for enterprise management.
+A Java swing project for task management, emails and other things.
