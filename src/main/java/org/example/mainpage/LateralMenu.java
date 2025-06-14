@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class LateralMenu extends JPanel {
 
-    public JLabel coworkersButton, addCoworkerButton, sendEmailButton, copyrightLabel;
+    public JLabel addTaskButton, taskTableButton, sendEmailButton, copyrightLabel;
 
     public LateralMenu(){
         init();
@@ -15,38 +15,38 @@ public class LateralMenu extends JPanel {
         setVisible(true);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         //
-        ImageIcon coworkerIcon = new ImageIcon(getClass().getResource("/imgs/folder_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"));
-        coworkersButton = new JLabel("coworkers", coworkerIcon, JLabel.LEFT);
+        ImageIcon coworkerIcon = new ImageIcon(getClass().getResource("/imgs/task_alt_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"));
+        addTaskButton = new JLabel("Add Task   ", coworkerIcon, JLabel.LEFT);
         //
         ImageIcon emailIcon = new ImageIcon(getClass().getResource("/imgs/mail_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"));
         sendEmailButton = new JLabel("Email         ", emailIcon, JLabel.LEFT);//space are for align the icon...
         //
-        ImageIcon addCoworkerIcon = new ImageIcon(getClass().getResource("/imgs/person_add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"));
-        addCoworkerButton = new JLabel("Management", addCoworkerIcon, JLabel.LEFT);
+        ImageIcon addCoworkerIcon = new ImageIcon(getClass().getResource("/imgs/list_alt_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"));
+        taskTableButton = new JLabel("Task Table", addCoworkerIcon, JLabel.LEFT);
         //
         ImageIcon copyrightIcon = new ImageIcon(getClass().getResource("/imgs/copyright_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"));
         copyrightLabel = new JLabel("Drepz.", copyrightIcon, 2);
         //
         copyrightLabel.setAlignmentX(CENTER_ALIGNMENT);
-        coworkersButton.setAlignmentX(CENTER_ALIGNMENT);
+        addTaskButton.setAlignmentX(CENTER_ALIGNMENT);
         sendEmailButton.setAlignmentX(CENTER_ALIGNMENT);
-        addCoworkerButton.setAlignmentX(CENTER_ALIGNMENT);
+        taskTableButton.setAlignmentX(CENTER_ALIGNMENT);
         //
-        coworkersButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        addTaskButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         sendEmailButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        addCoworkerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        taskTableButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         //
         copyrightLabel.setForeground(Color.WHITE);
-        coworkersButton.setForeground(Color.WHITE);
+        addTaskButton.setForeground(Color.WHITE);
         sendEmailButton.setForeground(Color.WHITE);
-        addCoworkerButton.setForeground(Color.white);
+        taskTableButton.setForeground(Color.white);
          //
         add(Box.createRigidArea(new Dimension(0, 200)));
-        add(coworkersButton);
+        add(addTaskButton);
         add(Box.createRigidArea(new Dimension(0, 30)));
         add(sendEmailButton);
         add(Box.createRigidArea(new Dimension(0, 30)));
-        add(addCoworkerButton);
+        add(taskTableButton);
         add(Box.createRigidArea(new Dimension(0, 400)));
         add(copyrightLabel);
     }

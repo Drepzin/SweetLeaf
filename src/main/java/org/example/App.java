@@ -2,13 +2,14 @@ package org.example;
 
 import org.example.login.LoginWindow;
 import org.example.mainpage.MainApp;
+import org.example.models.Tasks;
+
 import javax.swing.*;
 
 public class App {
 
     public static void main( String[] args ) {
-        System.setProperty("awt.useSystemAAFontSettings", "on");
-        System.setProperty("swing.aatext", "true");
+        System.setProperty("sun.java2d.uiScale", "1.0");
         SwingUtilities.invokeLater(MainApp::new);
         //SwingUtilities.invokeLater(LoginWindow::new);
     }

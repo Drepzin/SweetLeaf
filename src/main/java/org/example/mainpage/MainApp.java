@@ -20,7 +20,6 @@ public class MainApp extends JFrame {
     private void init(){
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1200, 800);
         setLayout(new GridBagLayout());
         //
         GridBagConstraints grdLateral = new GridBagConstraints();
@@ -56,11 +55,11 @@ public class MainApp extends JFrame {
         userMenu = new UserMenu();
         add(userMenu, grdUser);
         //
-        lateralMenu.coworkersButton.addMouseListener(new MouseAdapter() {
+        lateralMenu.addTaskButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                mainPage.menuLayout.show(mainPage, "coworkers");
+                mainPage.menuLayout.show(mainPage, "addTasks");
             }
         });
         //
@@ -72,11 +71,11 @@ public class MainApp extends JFrame {
             }
         });
         //
-        lateralMenu.addCoworkerButton.addMouseListener(new MouseAdapter() {
+        lateralMenu.taskTableButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                mainPage.menuLayout.show(mainPage, "addCoworkers");
+                mainPage.menuLayout.show(mainPage, "taskTable");
             }
         });
         //
@@ -88,6 +87,7 @@ public class MainApp extends JFrame {
             }
         });
         pack();
+        setSize(1200, 800);
         setResizable(false);
     }
 }

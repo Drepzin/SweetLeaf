@@ -1,7 +1,7 @@
 package org.example.mainpage;
 
-import org.example.mainpage.subpages.AddCoworkerPanel;
-import org.example.mainpage.subpages.CoworkersPanel;
+import org.example.mainpage.subpages.TaskViewPanel;
+import org.example.mainpage.subpages.AddATaskPanel;
 import org.example.mainpage.subpages.SendEmailPanel;
 import org.example.mainpage.subpages.UserInfoPanel;
 
@@ -12,9 +12,9 @@ public class MainPage extends JPanel {
 
     private SendEmailPanel sendEmailPanel;
 
-    private CoworkersPanel coworkersPanel;
+    private AddATaskPanel AddATaskPanel;
 
-    private AddCoworkerPanel addCoworkerPanel;
+    private TaskViewPanel taskViewPanel;
 
     private UserInfoPanel userInfoPanel;
 
@@ -30,12 +30,12 @@ public class MainPage extends JPanel {
         menuLayout = new CardLayout();
         setLayout(menuLayout);
         sendEmailPanel = new SendEmailPanel();
-        coworkersPanel = new CoworkersPanel();
-        addCoworkerPanel = new AddCoworkerPanel();
+        AddATaskPanel = new AddATaskPanel();
+        taskViewPanel = new TaskViewPanel();
         userInfoPanel = new UserInfoPanel();
         add(sendEmailPanel, "email");
-        add(coworkersPanel, "coworkers");
-        add(addCoworkerPanel, "addCoworkers");
+        add(AddATaskPanel, "addTasks");
+        add(taskViewPanel, "taskTable");
         add(userInfoPanel, "infoPanel");
     }
 
