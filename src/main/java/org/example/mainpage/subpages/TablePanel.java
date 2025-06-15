@@ -3,13 +3,14 @@ package org.example.mainpage.subpages;
 import org.example.models.Tasks;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 public class TablePanel extends JPanel {
 
     private JLabel tableLabel;
 
-    private JTable taskTables;
+    public JTable taskTables;
 
     public TablePanel(){
         init();
@@ -27,7 +28,7 @@ public class TablePanel extends JPanel {
          //
         taskTables = new JTable(data, columns);
         //
-        taskTables.getColumnModel().setColumnMargin(8);
+        taskTables.setSelectionBackground(Color.decode("#404040"));
         taskTables.getColumnModel().getColumn(0).setMaxWidth(70);
         taskTables.getColumnModel().getColumn(1).setMaxWidth(70);
         taskTables.getColumnModel().getColumn(3).setMaxWidth(100);
@@ -38,6 +39,14 @@ public class TablePanel extends JPanel {
         taskTables.setAlignmentX(Component.TOP_ALIGNMENT);
          //
         JScrollPane jScrollPane = new JScrollPane(taskTables);
+        jScrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI(){
+            @Override
+            protected void configureScrollBarColors() {
+                super.configureScrollBarColors();
+                this.thumbColor = Color.decode("#393939");
+                this.trackColor = Color.decode("#454545");
+            }
+        });
         //
         add(jScrollPane);
     }

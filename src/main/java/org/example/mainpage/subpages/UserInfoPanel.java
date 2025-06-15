@@ -19,6 +19,7 @@ public class UserInfoPanel extends JPanel {
 
     private void init(){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBackground(Color.decode("#232323"));
         //
         nameLabel = new JLabel("full name");
         usernameLabel = new JLabel("username");
@@ -34,23 +35,38 @@ public class UserInfoPanel extends JPanel {
         applyButton = new JButton("apply");
         //
         nameLabel.setAlignmentX(CENTER_ALIGNMENT);
+        nameLabel.setForeground(Color.decode("#ffffff"));
         nameField.setAlignmentX(CENTER_ALIGNMENT);
+        nameField.setBackground(Color.decode("#333333"));
+        nameField.setForeground(Color.decode("#ffffff"));
         nameField.setMaximumSize(new Dimension(650, 30));
         //
         usernameLabel.setAlignmentX(CENTER_ALIGNMENT);
+        usernameLabel.setForeground(Color.decode("#ffffff"));
         usernameField.setAlignmentX(CENTER_ALIGNMENT);
+        usernameField.setBackground(Color.decode("#333333"));
+        usernameField.setForeground(Color.decode("#ffffff"));
         usernameField.setMaximumSize(new Dimension(650, 30));
         //
         emailLabel.setAlignmentX(CENTER_ALIGNMENT);
+        emailLabel.setForeground(Color.decode("#fffffff"));
         emailField.setAlignmentX(CENTER_ALIGNMENT);
+        emailField.setBackground(Color.decode("#333333"));
+        emailField.setForeground(Color.decode("#ffffff"));
         emailField.setMaximumSize(new Dimension(650, 30));
          //
         passwordLabel.setAlignmentX(CENTER_ALIGNMENT);
+        passwordLabel.setForeground(Color.decode("#ffffff"));
         passwordField.setAlignmentX(CENTER_ALIGNMENT);
+        passwordField.setBackground(Color.decode("#333333"));
+        passwordField.setForeground(Color.decode("#ffffff"));
         passwordField.setMaximumSize(new Dimension(650, 30));
         //
         passwordRepLabel.setAlignmentX(CENTER_ALIGNMENT);
+        passwordRepLabel.setForeground(Color.decode("#ffffff"));
         passwordRepField.setAlignmentX(CENTER_ALIGNMENT);
+        passwordRepField.setBackground(Color.decode("#333333"));
+        passwordRepField.setForeground(Color.decode("#ffffff"));
         passwordRepField.setMaximumSize(new Dimension(650, 30));
         //
          //remove borders
@@ -61,6 +77,8 @@ public class UserInfoPanel extends JPanel {
         passwordRepField.setBorder(null);
         applyButton.setBorder(null);
         //
+        applyButton.setBackground(Color.decode("#00E676"));
+        applyButton.setForeground(Color.decode("#ffffff"));
         applyButton.setAlignmentX(CENTER_ALIGNMENT);
         applyButton.setMaximumSize(new Dimension(70, 30));
         applyButton.setCursor(new Cursor(Cursor.HAND_CURSOR));

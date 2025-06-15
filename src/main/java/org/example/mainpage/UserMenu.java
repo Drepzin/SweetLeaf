@@ -52,7 +52,7 @@ public class UserMenu extends JPanel {
         super.paintComponent(g);
 
         Graphics2D graphics2D = (Graphics2D) g;
-        GradientPaint gradientPaint = new GradientPaint(0, 0, Color.decode("#00bd1d"), 0, 800, Color.decode("#12ffe3"));
+        GradientPaint gradientPaint = new GradientPaint(0, 0, Color.decode("#ff5d00"), 0, 800, Color.decode("#ffd500"));
         graphics2D.setPaint(gradientPaint);
         graphics2D.fillRect(0,0, 1200, 800);
     }

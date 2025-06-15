@@ -1,5 +1,7 @@
 package org.example.mainpage.subpages;
 
+import org.example.utils.GradientBorder;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,6 +20,7 @@ public class AddATaskPanel extends JPanel {
     private void init(){
         setVisible(true);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBackground(Color.decode("#252525"));
         //
         panelLabel = new JLabel("Add a task");
         taskNameLabel = new JLabel("Task name");
@@ -29,6 +32,10 @@ public class AddATaskPanel extends JPanel {
         taskDescriptionField = new JTextField();
         saveTaskButton = new JButton("save");
         //
+        taskNameLabel.setForeground(Color.decode("#ffffff"));
+        taskDateLabel.setForeground(Color.decode("#ffffff"));
+        taskDescriptionLabel.setForeground(Color.decode("#ffffff"));
+         //
         panelLabel.setAlignmentX(CENTER_ALIGNMENT);
         taskNameLabel.setAlignmentX(CENTER_ALIGNMENT);
         taskNameField.setAlignmentX(CENTER_ALIGNMENT);
@@ -38,16 +45,31 @@ public class AddATaskPanel extends JPanel {
         taskDescriptionField.setAlignmentX(CENTER_ALIGNMENT);
         saveTaskButton.setAlignmentX(CENTER_ALIGNMENT);
         //
-        panelLabel.setFont(new Font("Impact", Font.BOLD, 50));
-        panelLabel.setForeground(Color.decode("#04ab14"));
-        taskNameField.setMaximumSize(new Dimension(300, 40));
-        taskDateField.setMaximumSize(new Dimension(300, 40));
-        taskDescriptionField.setMaximumSize(new Dimension(300, 40));
+        taskNameField.setBackground(Color.decode("#333333"));
+        taskNameField.setBorder(null);
+        taskNameField.setForeground(Color.decode("#ffffff"));
+        taskNameField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
+        //
+        taskDateField.setBackground(Color.decode("#333333"));
+        taskDateField.setBorder(null);
+        taskDateField.setForeground(Color.decode("#ffffff"));
+        taskDateField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
+        //
+        taskDescriptionField.setBackground(Color.decode("#333333"));
+        taskDescriptionField.setBorder(null);
+        taskDescriptionField.setForeground(Color.decode("#ffffff"));
+        taskDescriptionField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
+        //
+        panelLabel.setFont(new Font("Bahnschrift", Font.BOLD, 50));
+        panelLabel.setForeground(Color.decode("#ff5c00"));
+        taskNameField.setMaximumSize(new Dimension(300, 30));
+        taskDateField.setMaximumSize(new Dimension(300, 30));
+        taskDescriptionField.setMaximumSize(new Dimension(300, 30));
          //
-        saveTaskButton.setBorder(null);
+        saveTaskButton.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
         saveTaskButton.setMaximumSize(new Dimension(100, 30));
         saveTaskButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        saveTaskButton.setBackground(Color.decode("#e22dff"));
+        saveTaskButton.setBackground(Color.decode("#ff5d00"));
         saveTaskButton.setForeground(Color.decode("#FFFFFF"));
         saveTaskButton.setFont(new Font("Arial", Font.BOLD, 15));
          //
