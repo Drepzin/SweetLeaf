@@ -1,5 +1,8 @@
 package org.example.mainpage.subpages;
 
+import org.example.utils.GradientBorder;
+import org.example.utils.GradientButton;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,7 +14,7 @@ public class UserInfoPanel extends JPanel {
 
     private JPasswordField passwordField, passwordRepField;
 
-    private JButton applyButton;
+    private GradientButton applyButton;
 
     public UserInfoPanel(){
         init();
@@ -32,7 +35,7 @@ public class UserInfoPanel extends JPanel {
         emailField = new JTextField();
         passwordField = new JPasswordField();
         passwordRepField = new JPasswordField();
-        applyButton = new JButton("apply");
+        applyButton = new GradientButton("apply", 30, 100, Color.decode("#ff6100"), Color.decode("#b900e6"));
         //
         nameLabel.setAlignmentX(CENTER_ALIGNMENT);
         nameLabel.setForeground(Color.decode("#ffffff"));
@@ -70,17 +73,13 @@ public class UserInfoPanel extends JPanel {
         passwordRepField.setMaximumSize(new Dimension(650, 30));
         //
          //remove borders
-        nameField.setBorder(null);
-        usernameField.setBorder(null);
-        emailField.setBorder(null);
-        passwordField.setBorder(null);
-        passwordRepField.setBorder(null);
-        applyButton.setBorder(null);
+        nameField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
+        usernameField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
+        emailField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
+        passwordField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
+        passwordRepField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
         //
-        applyButton.setBackground(Color.decode("#00E676"));
-        applyButton.setForeground(Color.decode("#ffffff"));
         applyButton.setAlignmentX(CENTER_ALIGNMENT);
-        applyButton.setMaximumSize(new Dimension(70, 30));
         applyButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
          //
         add(Box.createRigidArea(new Dimension(0, 200)));

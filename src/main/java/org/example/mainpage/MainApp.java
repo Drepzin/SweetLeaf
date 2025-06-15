@@ -63,14 +63,6 @@ public class MainApp extends JFrame {
             }
         });
         //
-        lateralMenu.sendEmailButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                mainPage.menuLayout.show(mainPage, "email");
-            }
-        });
-        //
         lateralMenu.taskTableButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

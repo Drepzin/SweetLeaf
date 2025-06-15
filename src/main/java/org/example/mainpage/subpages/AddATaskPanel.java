@@ -1,17 +1,21 @@
 package org.example.mainpage.subpages;
 
 import org.example.utils.GradientBorder;
+import org.example.utils.GradientButton;
+import org.example.utils.GradientLabel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class AddATaskPanel extends JPanel {
 
-    private JLabel panelLabel, taskNameLabel, taskDateLabel, taskDescriptionLabel;
+    private JLabel taskNameLabel, taskDateLabel, taskDescriptionLabel;
+
+    private GradientLabel panelLabel;
 
     private JTextField taskNameField, taskDateField, taskDescriptionField;
 
-    private JButton saveTaskButton;
+    private GradientButton saveTaskButton;
 
     public AddATaskPanel(){
         init();
@@ -22,7 +26,7 @@ public class AddATaskPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.decode("#252525"));
         //
-        panelLabel = new JLabel("Add a task");
+        panelLabel = new GradientLabel("Bahnschrift", "Add task", 50, Color.decode("#ff2fa0"), Color.decode("#ffa822"));
         taskNameLabel = new JLabel("Task name");
         taskDateLabel = new JLabel("Init date");
         taskDescriptionLabel = new JLabel("Description");
@@ -30,7 +34,7 @@ public class AddATaskPanel extends JPanel {
         taskNameField = new JTextField();
         taskDateField = new JTextField();
         taskDescriptionField = new JTextField();
-        saveTaskButton = new JButton("save");
+        saveTaskButton = new GradientButton("save", 30, 100, Color.decode("#ff6100"), Color.decode("#b900e6"));
         //
         taskNameLabel.setForeground(Color.decode("#ffffff"));
         taskDateLabel.setForeground(Color.decode("#ffffff"));
@@ -46,17 +50,14 @@ public class AddATaskPanel extends JPanel {
         saveTaskButton.setAlignmentX(CENTER_ALIGNMENT);
         //
         taskNameField.setBackground(Color.decode("#333333"));
-        taskNameField.setBorder(null);
         taskNameField.setForeground(Color.decode("#ffffff"));
         taskNameField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
         //
         taskDateField.setBackground(Color.decode("#333333"));
-        taskDateField.setBorder(null);
         taskDateField.setForeground(Color.decode("#ffffff"));
         taskDateField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
         //
         taskDescriptionField.setBackground(Color.decode("#333333"));
-        taskDescriptionField.setBorder(null);
         taskDescriptionField.setForeground(Color.decode("#ffffff"));
         taskDescriptionField.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
         //
@@ -66,11 +67,7 @@ public class AddATaskPanel extends JPanel {
         taskDateField.setMaximumSize(new Dimension(300, 30));
         taskDescriptionField.setMaximumSize(new Dimension(300, 30));
          //
-        saveTaskButton.setBorder(new GradientBorder(Color.decode("#ff6100"), Color.decode("#b900e6"), 1));
-        saveTaskButton.setMaximumSize(new Dimension(100, 30));
         saveTaskButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        saveTaskButton.setBackground(Color.decode("#ff5d00"));
-        saveTaskButton.setForeground(Color.decode("#FFFFFF"));
         saveTaskButton.setFont(new Font("Arial", Font.BOLD, 15));
          //
         add(Box.createRigidArea(new Dimension(0, 100)));

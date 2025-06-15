@@ -1,5 +1,7 @@
 package org.example.mainpage.subpages;
 
+import org.example.utils.GradientButton;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,7 +9,7 @@ public class TaskViewPanel extends JPanel {
 
     private TablePanel tablePanel;
 
-    private JButton deleteTaskButton;
+    private GradientButton deleteTaskButton;
 
     public TaskViewPanel(){
         init();
@@ -19,7 +21,7 @@ public class TaskViewPanel extends JPanel {
         setBackground(Color.decode("#252525"));
         //
         tablePanel = new TablePanel();
-        deleteTaskButton = new JButton("delete");
+        deleteTaskButton = new GradientButton("delete", 40, 100, Color.decode("#ff6100"), Color.decode("#b900e6"));
         //
         tablePanel.setMaximumSize(new Dimension(800, 700));
         //
