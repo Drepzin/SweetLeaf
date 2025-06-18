@@ -10,6 +10,8 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.List;
 
@@ -32,7 +34,12 @@ public class TablePanel extends JPanel {
         setVisible(true);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         String[] columns = {"task", "data", "description", "complete"};
-        DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
+        DefaultTableModel tableModel = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Nenhuma célula será editável
+            }
+        };
 
         //
         tableLabel = new JLabel("Task Table");
@@ -42,15 +49,14 @@ public class TablePanel extends JPanel {
         taskTables = new JTable(tableModel);
         //
         taskTables.setSelectionBackground(Color.decode("#404040"));
-        taskTables.getColumnModel().getColumn(0).setMaxWidth(150);
+        taskTables.getColumnModel().getColumn(0).setMaxWidth(100);
         taskTables.getColumnModel().getColumn(1).setMaxWidth(70);
-        taskTables.getColumnModel().getColumn(3).setMaxWidth(100);
+        taskTables.getColumnModel().getColumn(3).setMaxWidth(70);
         taskTables.setRowHeight(40);
         taskTables.getTableHeader().setBackground(Color.decode("#a0a0a0"));
         //
         taskTables.setBackground(Color.decode("#767676"));
         taskTables.setAlignmentX(Component.TOP_ALIGNMENT);
-        taskTables.setEnabled(false);
          //
         JScrollPane jScrollPane = new JScrollPane(taskTables);
         jScrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI(){
@@ -93,4 +99,12 @@ public class TablePanel extends JPanel {
         }
     }
 
+    public String getSelectedTaskName(){
+        int selectedRow = taskTables.getSelectedRow();
+        if(selectedRow != -1){
+            Object value = taskTables.getValueAt(selectedRow, 0);
+            return (String) value;
+        }
+        return null;
+    }
 }

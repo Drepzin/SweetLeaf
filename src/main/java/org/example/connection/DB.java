@@ -22,7 +22,6 @@ public class DB {
             username = properties.getProperty("username");
             password = properties.getProperty("password");
             Class.forName(driver);
-            System.out.println("Connection granted");
         }
         catch (IOException | ClassNotFoundException e){
             throw new RuntimeException(e);

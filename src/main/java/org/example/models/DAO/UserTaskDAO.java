@@ -14,5 +14,5 @@ public interface UserTaskDAO {
 
     void updateUserTask();
 
-    void deleteUserTask();
+    void deleteUserTask(String taskName, String username);
 }

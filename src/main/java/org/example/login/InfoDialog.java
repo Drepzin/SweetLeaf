@@ -7,8 +7,6 @@ public class InfoDialog extends JDialog {
 
     private String message;
 
-    private JFrame parent;
-
     private JLabel textLabel;
 
     private JButton button;

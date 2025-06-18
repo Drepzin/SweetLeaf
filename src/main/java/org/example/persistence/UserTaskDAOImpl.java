@@ -78,7 +78,17 @@ public class UserTaskDAOImpl implements UserTaskDAO {
     }
 
     @Override
-    public void deleteUserTask() {
-
+    public void deleteUserTask(String taskname, String username) {
+        String sql = "delete from user_tasks u where u.task_name = ? AND u.user_owner = ?";
+        try (PreparedStatement psmt = conn.prepareStatement(sql)){
+            conn.setAutoCommit(false);
+            psmt.setString(1, taskname);
+            psmt.setString(2, username);
+            psmt.executeUpdate();
+            conn.commit();
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 }

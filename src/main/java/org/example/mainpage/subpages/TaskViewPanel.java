@@ -1,10 +1,14 @@
 package org.example.mainpage.subpages;
 
+import org.example.connection.DB;
+import org.example.models.DAO.UserTaskDAO;
 import org.example.models.User;
+import org.example.persistence.UserTaskDAOImpl;
 import org.example.utils.GradientButton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
 
 public class TaskViewPanel extends JPanel {
 
@@ -33,11 +37,18 @@ public class TaskViewPanel extends JPanel {
         //
         deleteTaskButton.setMaximumSize(new Dimension(150, 60));
         deleteTaskButton.setBorder(null);
+        deleteTaskButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         deleteTaskButton.setBackground(Color.decode("#ffffff"));
          //
         add(Box.createRigidArea(new Dimension(0, 50)));
         add(tablePanel);
         add(Box.createRigidArea(new Dimension(0,10)));
         add(deleteTaskButton);
+
+        deleteTaskButton.addActionListener((e) -> {
+            Connection conn = DB.getInstace().getConn();
+            UserTaskDAO userTaskDAO = new UserTaskDAOImpl(conn);
+            userTaskDAO.deleteUserTask(tablePanel.getSelectedTaskName(), user.getUserName());
+        });
     }
 }

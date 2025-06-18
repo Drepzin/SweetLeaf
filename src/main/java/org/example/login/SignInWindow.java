@@ -101,7 +101,6 @@ public class SignInWindow extends JPanel {
         //
         signInButton.addActionListener((e) -> {
             doLogin(usernameField.getText());
-            System.out.println(user);
         });
     }
 
@@ -164,7 +163,6 @@ public class SignInWindow extends JPanel {
                     parent.dispose();
                 }
                 user = userDAO.findUser(username);
-                System.out.println("Logado");
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
