@@ -1,7 +1,5 @@
 package org.example.mainpage.subpages;
 
-import org.example.models.Tasks;
-
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;

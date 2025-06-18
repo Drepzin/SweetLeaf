@@ -3,7 +3,7 @@ package org.example.models;
 import java.util.Date;
 import java.util.Objects;
 
-public class Tasks {
+public class UserTask {
 
     private String taskName;
 
@@ -13,9 +13,11 @@ public class Tasks {
 
     private boolean complete;
 
-    public Tasks(){}
+    private User user;
 
-    public Tasks(String taskName, Date taskDate, String description, boolean complete) {
+    public UserTask(){}
+
+    public UserTask(String taskName, Date taskDate, String description, boolean complete) {
         this.taskName = taskName;
         this.taskDate = taskDate;
         this.description = description;
@@ -54,11 +56,19 @@ public class Tasks {
         this.complete = complete;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Tasks tasks = (Tasks) o;
-        return complete == tasks.complete && Objects.equals(taskName, tasks.taskName) && Objects.equals(taskDate, tasks.taskDate) && Objects.equals(description, tasks.description);
+        UserTask userTask = (UserTask) o;
+        return complete == userTask.complete && Objects.equals(taskName, userTask.taskName) && Objects.equals(taskDate, userTask.taskDate) && Objects.equals(description, userTask.description);
     }
 
     @Override

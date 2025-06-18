@@ -1,9 +1,15 @@
 package org.example.login;
 
+import org.example.connection.DB;
+import org.example.models.DAO.UserDAO;
+import org.example.models.User;
+import org.example.persistence.UserDAOImpl;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.ArrayDeque;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class SignUpWindow extends JPanel {
 
@@ -14,6 +20,8 @@ public class SignUpWindow extends JPanel {
     private JPasswordField passwordField, passwordRepField;
 
     private JButton signUpButton;
+
+    private UserDAO userDAO;
 
     public SignUpWindow(){
         init();
@@ -105,6 +113,11 @@ public class SignUpWindow extends JPanel {
         add(passwordRepField);
         add(Box.createRigidArea(new Dimension(0, 30)));
         add(signUpButton);
+        Connection connection = DB.getInstace().getConn();
+        userDAO = new UserDAOImpl(connection);
+        signUpButton.addActionListener((e) ->{
+            registerUser();
+        });
     }
 
     @Override
@@ -115,5 +128,60 @@ public class SignUpWindow extends JPanel {
         GradientPaint gradientPaint = new GradientPaint(0, 0, Color.decode("#00bd1d"), 0, 500, Color.decode("#12ffe3"));
         graphics2D.setPaint(gradientPaint);
         graphics2D.fillRect(0,0, 1200, 700);
+    }
+
+    private void registerUser(){
+        try {
+            String fullName = nameField.getText();
+            String username = usernameField.getText();
+            String email = emailField.getText();
+            String password = passwordField.getText();
+            if(fullName.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty()){
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        SignUpWindow suw = new SignUpWindow();
+                        JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(suw);
+                        ErrorFieldDialog efd = new ErrorFieldDialog("All fields are mandatory", parent);
+                    }
+                });
+            }
+            else{
+                if(!checkPassword()){
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            SignUpWindow suw = new SignUpWindow();
+                            JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(suw);
+                            ErrorFieldDialog efd = new ErrorFieldDialog("Passwords have to be equal", parent);
+                        }
+                    });
+                }
+                else{
+                    cleanFields();
+                    User user = new User(fullName, username, email, password);
+                    userDAO.addUser(user);
+                }
+            }
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    private void cleanFields(){
+        nameField.setText("");
+        usernameField.setText("");
+        emailField.setText("");
+        passwordField.setText("");
+        passwordRepField.setText("");
+    }
+
+    private boolean checkPassword(){
+        if(passwordField.getText().equals(passwordRepField.getText())){
+            return true;
+        }
+        return false;
     }
 }

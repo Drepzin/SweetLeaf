@@ -1,5 +1,7 @@
 package org.example.mainpage;
 
+import org.example.models.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -13,7 +15,10 @@ public class MainApp extends JFrame {
 
     private UserMenu userMenu;
 
-    public MainApp(){
+    private User user;
+
+    public MainApp(User user){
+        this.user = user;
         init();
     }
 
@@ -52,7 +57,7 @@ public class MainApp extends JFrame {
         grdUser.gridwidth = 1;
         grdUser.weightx = 0.5;
         grdUser.weighty = 1;
-        userMenu = new UserMenu();
+        userMenu = new UserMenu(user);
         add(userMenu, grdUser);
         //
         lateralMenu.addTaskButton.addMouseListener(new MouseAdapter() {
@@ -81,5 +86,13 @@ public class MainApp extends JFrame {
         pack();
         setSize(1200, 800);
         setResizable(false);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,5 +1,7 @@
 package org.example.mainpage;
 
+import org.example.models.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -11,7 +13,10 @@ public class UserMenu extends JPanel {
 
     public  JLabel editInfoLabel;
 
-    public UserMenu(){
+    private User user;
+
+    public UserMenu(User user){
+        this.user = user;
         init();
     }
 
@@ -24,8 +29,8 @@ public class UserMenu extends JPanel {
         Image profileIconImage = profileIcon.getImage().getScaledInstance(80, 80, Image.SCALE_FAST);
         profileIcon = new ImageIcon(profileIconImage);
         profileIconLabel = new JLabel(profileIcon);
-        usernameLabel = new JLabel("username");
-        emailLabel = new JLabel("email@email.com");
+        usernameLabel = new JLabel(user.getUserName());
+        emailLabel = new JLabel(user.getEmail());
         editInfoLabel = new JLabel("edit infos");
         //
         profileIconLabel.setAlignmentX(CENTER_ALIGNMENT);

@@ -1,9 +1,19 @@
 package org.example.login;
 
+import org.example.connection.DB;
+import org.example.mainpage.MainApp;
+import org.example.models.DAO.UserDAO;
+import org.example.models.User;
+import org.example.persistence.UserDAOImpl;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class SignInWindow extends JPanel {
 
@@ -17,6 +27,10 @@ public class SignInWindow extends JPanel {
 
     private JDialog forgotDialog;
 
+    private UserDAO userDAO;
+
+    public User user;
+
     public SignInWindow(){
         init();
     }
@@ -25,6 +39,7 @@ public class SignInWindow extends JPanel {
         setVisible(true);
         setBackground(Color.decode("#f4f2f2"));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        userDAO = new UserDAOImpl(getConn());
         //
          //initializate
         titleLabel = new JLabel("Sweet");
@@ -83,6 +98,11 @@ public class SignInWindow extends JPanel {
                 initForgotDialog();
             }
         });
+        //
+        signInButton.addActionListener((e) -> {
+            doLogin(usernameField.getText());
+            System.out.println(user);
+        });
     }
 
     private void initForgotDialog(){
@@ -107,6 +127,7 @@ public class SignInWindow extends JPanel {
         forgotDialog.add(userEmailLabel);
         forgotDialog.add(userEmailField);
         forgotDialog.add(sendEmailButton);
+        //
     }
 
     @Override
@@ -117,5 +138,77 @@ public class SignInWindow extends JPanel {
         GradientPaint gradientPaint = new GradientPaint(0, 0, Color.decode("#f4f2f2"), 0, 500, Color.decode("#d9d9d9"));
         graphics2D.setPaint(gradientPaint);
         graphics2D.fillRect(0,0, 1200, 700);
+    }
+
+    private void doLogin(String username){
+        JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
+        Connection conn = DB.getInstace().getConn();
+        if(!verifyUsername(username)){
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    ErrorFieldDialog efd = new ErrorFieldDialog("Username don't exist!", parent);
+                }
+            });
+        }
+        else{
+            if(!confirmLogin(username )){
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        ErrorFieldDialog efd = new ErrorFieldDialog("Incorrect password!", parent);
+                    }
+                });
+            }
+            else{
+                if(parent != null){
+                    parent.dispose();
+                }
+                user = userDAO.findUser(username);
+                System.out.println("Logado");
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        MainApp mainApp = new MainApp(user);
+                    }
+                });
+            }
+        }
+    }
+
+    public User getUser(){
+        return user;
+    }
+
+    private boolean confirmLogin(String username){
+        try{
+            String dbPassword = userDAO.selectField("password", username);
+            String fieldPassword = passwordField.getText();
+            if(fieldPassword.equals(dbPassword)){
+                return true;
+            }
+            return false;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Connection getConn(){
+        Connection conn = DB.getInstace().getConn();
+        return conn;
+    }
+
+    private boolean verifyUsername(String username){
+        Connection conn = getConn();
+        String sql = "SELECT 1 from user_table u WHERE u.username = ? LIMIT 1";
+        try(PreparedStatement pst = conn.prepareStatement(sql)){
+            pst.setString(1, username);
+            ResultSet rs = pst.executeQuery();
+            return rs.next();
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 }
