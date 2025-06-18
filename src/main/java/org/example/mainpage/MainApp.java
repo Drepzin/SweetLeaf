@@ -26,6 +26,7 @@ public class MainApp extends JFrame {
     private void init(){
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Sweet Leaf");
         setLayout(new GridBagLayout());
         //
         GridBagConstraints grdLateral = new GridBagConstraints();

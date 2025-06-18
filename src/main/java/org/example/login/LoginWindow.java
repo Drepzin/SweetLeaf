@@ -9,6 +9,7 @@ public class LoginWindow extends JFrame {
         //Init
         setVisible(true);
         setResizable(false);
+        setTitle("Sweet Leaf");
         setSize(new Dimension(1200, 600));
         setLayout(new GridLayout(1,2));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
