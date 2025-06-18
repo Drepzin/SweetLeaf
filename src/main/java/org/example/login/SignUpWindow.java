@@ -142,7 +142,7 @@ public class SignUpWindow extends JPanel {
                     public void run() {
                         SignUpWindow suw = new SignUpWindow();
                         JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(suw);
-                        ErrorFieldDialog efd = new ErrorFieldDialog("All fields are mandatory", parent);
+                        InfoDialog efd = new InfoDialog("All fields are mandatory", parent);
                     }
                 });
             }
@@ -153,7 +153,7 @@ public class SignUpWindow extends JPanel {
                         public void run() {
                             SignUpWindow suw = new SignUpWindow();
                             JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(suw);
-                            ErrorFieldDialog efd = new ErrorFieldDialog("Passwords have to be equal", parent);
+                            InfoDialog efd = new InfoDialog("Passwords have to be equal", parent);
                         }
                     });
                 }

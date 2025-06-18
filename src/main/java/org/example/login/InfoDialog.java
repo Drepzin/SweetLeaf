@@ -3,7 +3,7 @@ package org.example.login;
 import javax.swing.*;
 import java.awt.*;
 
-public class ErrorFieldDialog extends JDialog {
+public class InfoDialog extends JDialog {
 
     private String message;
 
@@ -13,7 +13,7 @@ public class ErrorFieldDialog extends JDialog {
 
     private JButton button;
 
-    public ErrorFieldDialog(String message, JFrame parent) {
+    public InfoDialog(String message, JFrame parent) {
         super(parent, true);
         this.message = message;
         init();

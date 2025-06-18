@@ -3,6 +3,7 @@ package org.example.mainpage;
 import org.example.mainpage.subpages.TaskViewPanel;
 import org.example.mainpage.subpages.AddATaskPanel;
 import org.example.mainpage.subpages.UserInfoPanel;
+import org.example.models.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,10 @@ public class MainPage extends JPanel {
 
     public CardLayout menuLayout;
 
-    public MainPage(){
+    private User user;
+
+    public MainPage(User user){
+        this.user = user;
         init();
     }
 
@@ -26,9 +30,9 @@ public class MainPage extends JPanel {
         setMinimumSize(new Dimension(800, 800));
         menuLayout = new CardLayout();
         setLayout(menuLayout);
-        AddATaskPanel = new AddATaskPanel();
-        taskViewPanel = new TaskViewPanel();
-        userInfoPanel = new UserInfoPanel();
+        AddATaskPanel = new AddATaskPanel(user);
+        taskViewPanel = new TaskViewPanel(user);
+        userInfoPanel = new UserInfoPanel(user);
         add(AddATaskPanel, "addTasks");
         add(taskViewPanel, "taskTable");
         add(userInfoPanel, "infoPanel");

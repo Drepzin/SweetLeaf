@@ -11,7 +11,7 @@ public interface UserDAO {
 
     User findUser(String username);
 
-    void updateUser(User user);
+    void updateUserPassword(String username, String password);
 
     void deleteUser(String username);
 

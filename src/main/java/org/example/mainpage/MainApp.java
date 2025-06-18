@@ -1,5 +1,6 @@
 package org.example.mainpage;
 
+import org.example.mainpage.subpages.TablePanel;
 import org.example.models.User;
 
 import javax.swing.*;
@@ -46,7 +47,7 @@ public class MainApp extends JFrame {
         grdMain.gridwidth = 1;
         grdMain.weightx = 4;
         grdMain.weighty = 1;
-        mainPage = new MainPage();
+        mainPage = new MainPage(user);
         add(mainPage, grdMain);
         //
         GridBagConstraints grdUser = new GridBagConstraints();

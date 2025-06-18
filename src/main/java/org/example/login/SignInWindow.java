@@ -142,12 +142,11 @@ public class SignInWindow extends JPanel {
 
     private void doLogin(String username){
         JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
-        Connection conn = DB.getInstace().getConn();
         if(!verifyUsername(username)){
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    ErrorFieldDialog efd = new ErrorFieldDialog("Username don't exist!", parent);
+                    InfoDialog efd = new InfoDialog("Username don't exist!", parent);
                 }
             });
         }
@@ -156,7 +155,7 @@ public class SignInWindow extends JPanel {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        ErrorFieldDialog efd = new ErrorFieldDialog("Incorrect password!", parent);
+                        InfoDialog efd = new InfoDialog("Incorrect password!", parent);
                     }
                 });
             }
@@ -205,6 +204,11 @@ public class SignInWindow extends JPanel {
         try(PreparedStatement pst = conn.prepareStatement(sql)){
             pst.setString(1, username);
             ResultSet rs = pst.executeQuery();
+            try{
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             return rs.next();
         }
         catch(SQLException e){

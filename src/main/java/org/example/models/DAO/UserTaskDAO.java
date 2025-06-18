@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface UserTaskDAO {
 
-    void addUserTask();
+    void addUserTask(UserTask userTask);
 
     UserTask findUserTask(String name);
 
-    List<UserTask> findAll();
+    List<UserTask> findAll(String username);
 
     void updateUserTask();
 

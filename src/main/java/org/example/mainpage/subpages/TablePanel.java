@@ -1,8 +1,17 @@
 package org.example.mainpage.subpages;
 
+import org.example.connection.DB;
+import org.example.models.DAO.UserTaskDAO;
+import org.example.models.User;
+import org.example.models.UserTask;
+import org.example.persistence.UserTaskDAOImpl;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.sql.Connection;
+import java.util.List;
 
 public class TablePanel extends JPanel {
 
@@ -10,7 +19,12 @@ public class TablePanel extends JPanel {
 
     public JTable taskTables;
 
-    public TablePanel(){
+    private User user;
+
+    private UserTaskDAO userTaskDAO;
+
+    public TablePanel(User user){
+        this.user = user;
         init();
     }
 
@@ -18,16 +32,17 @@ public class TablePanel extends JPanel {
         setVisible(true);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         String[] columns = {"task", "data", "description", "complete"};
-        String[][] data = new String[30][30];
+        DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
+
         //
         tableLabel = new JLabel("Task Table");
         //
         tableLabel.setFont(new Font("Arial", Font.BOLD, 50));
          //
-        taskTables = new JTable(data, columns);
+        taskTables = new JTable(tableModel);
         //
         taskTables.setSelectionBackground(Color.decode("#404040"));
-        taskTables.getColumnModel().getColumn(0).setMaxWidth(70);
+        taskTables.getColumnModel().getColumn(0).setMaxWidth(150);
         taskTables.getColumnModel().getColumn(1).setMaxWidth(70);
         taskTables.getColumnModel().getColumn(3).setMaxWidth(100);
         taskTables.setRowHeight(40);
@@ -35,6 +50,7 @@ public class TablePanel extends JPanel {
         //
         taskTables.setBackground(Color.decode("#767676"));
         taskTables.setAlignmentX(Component.TOP_ALIGNMENT);
+        taskTables.setEnabled(false);
          //
         JScrollPane jScrollPane = new JScrollPane(taskTables);
         jScrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI(){
@@ -46,6 +62,35 @@ public class TablePanel extends JPanel {
             }
         });
         //
+        Connection connection = DB.getInstace().getConn();
+        userTaskDAO = new UserTaskDAOImpl(connection);
+         //
         add(jScrollPane);
+        attTable();
     }
+
+    private void attTable(){
+        Timer timer = new Timer(5000, e -> populateTable());
+        timer.start();
+    }
+
+    private void populateTable(){
+        List<UserTask> tasks = userTaskDAO.findAll(user.getUserName());
+
+        DefaultTableModel model = (DefaultTableModel) taskTables.getModel();
+
+        // Limpa linhas antigas (se quiser)
+        model.setRowCount(0);
+
+        for(UserTask userTask : tasks){
+            Object[] taskInfo = {
+                    userTask.getTaskName(),
+                    userTask.getTaskDate(),
+                    userTask.getDescription(),
+                    userTask.isComplete() ? "Done" : "Pending"
+            };
+            model.addRow(taskInfo);
+        }
+    }
+
 }

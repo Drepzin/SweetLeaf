@@ -9,23 +9,22 @@ import java.util.Properties;
 
 public class DB {
 
-    private static DB instace = null;
+    private String driver, url, username, password;
 
-    private final Connection conn;
+    private static DB instace = null;
 
     private DB(){
         try(InputStream is = getClass().getResourceAsStream("/db.properties")){
             Properties properties = new Properties();
             properties.load(is);
-            String driver = properties.getProperty("driver");
-            String url = properties.getProperty("url");
-            String username = properties.getProperty("username");
-            String password = properties.getProperty("password");
+            driver = properties.getProperty("driver");
+            url = properties.getProperty("url");
+            username = properties.getProperty("username");
+            password = properties.getProperty("password");
             Class.forName(driver);
-            conn = DriverManager.getConnection(url, username, password);
             System.out.println("Connection granted");
         }
-        catch (IOException | ClassNotFoundException | SQLException e){
+        catch (IOException | ClassNotFoundException e){
             throw new RuntimeException(e);
         }
     }
@@ -36,15 +35,9 @@ public class DB {
     }
 
     public Connection getConn(){
-        if(conn == null){throw new RuntimeException("Fail");}
-        return conn;
-    }
-
-    public void shutdownConnection(){
         try{
-            conn.close();
-        }
-        catch (SQLException e){
+            return DriverManager.getConnection(url, username, password);
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

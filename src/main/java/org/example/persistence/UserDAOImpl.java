@@ -40,7 +40,11 @@ public class UserDAOImpl implements UserDAO {
                         rs.getString("email"), rs.getString("password"));
                 rs.close();
                 pst.close();
-                DB.getInstace().shutdownConnection();
+               try{
+                   conn.close();
+               } catch (SQLException e) {
+                   throw new RuntimeException(e);
+               }
                 return user;
             }
             return null;
@@ -50,7 +54,29 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUserPassword(String username, String password) {
+        String sql = "update user_table u set password = ? where u.username = ?";
+        try{
+            conn.setAutoCommit(false);
+            try(PreparedStatement pstm = conn.prepareStatement(sql)){
+                pstm.setString(1, password);
+                pstm.setString(2, username);
+                pstm.executeUpdate();
+                conn.commit();
+                System.out.println("Password changed");
+                try{
+                    conn.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            catch (SQLException e){
+                throw new RuntimeException(e);
+            }
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
 
     }
 

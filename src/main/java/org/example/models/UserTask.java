@@ -7,21 +7,29 @@ public class UserTask {
 
     private String taskName;
 
-    private Date taskDate;
+    private java.sql.Date taskDate;
 
     private String description;
 
     private boolean complete;
 
-    private User user;
+    private String userUsername;
 
     public UserTask(){}
 
-    public UserTask(String taskName, Date taskDate, String description, boolean complete) {
+    public UserTask(String taskName, java.sql.Date taskDate, String description, boolean complete) {
         this.taskName = taskName;
         this.taskDate = taskDate;
         this.description = description;
         this.complete = complete;
+    }
+
+    public UserTask(String taskName, java.sql.Date taskDate, String description, boolean complete, String userUsername) {
+        this.taskName = taskName;
+        this.taskDate = taskDate;
+        this.description = description;
+        this.complete = complete;
+        this.userUsername = userUsername;
     }
 
     public String getTaskName() {
@@ -36,7 +44,7 @@ public class UserTask {
         return taskDate;
     }
 
-    public void setTaskDate(Date taskDate) {
+    public void setTaskDate(java.sql.Date taskDate) {
         this.taskDate = taskDate;
     }
 
@@ -56,12 +64,12 @@ public class UserTask {
         this.complete = complete;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserUsername() {
+        return userUsername;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserUsername(String userUsername) {
+        this.userUsername = userUsername;
     }
 
     @Override
